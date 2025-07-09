@@ -18,8 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-import static com.main.constants.ErrorsConstant.NO_SUCH_ELEMENT_EXCEPTION;
-
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 @Slf4j
@@ -59,6 +57,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = NoSuchElementException.class)
     public final ResponseEntity<String> handleNoSuchElementException(NoSuchElementException ex) {
         log.error("error: {}", ex.getMessage(), ex);
-        return new ResponseEntity<> (NO_SUCH_ELEMENT_EXCEPTION, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<> (ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
